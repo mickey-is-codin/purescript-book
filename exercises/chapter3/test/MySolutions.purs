@@ -1,12 +1,13 @@
 module Test.MySolutions 
   ( findEntryByStreet
   , findEntryByStreet'
-  , isInBook) where
+  , isInBook
+  , removeDuplicates) where
 
 import Prelude
 
 import Data.AddressBook (Entry, AddressBook)
-import Data.List (head, filter, null)
+import Data.List (filter, head, nubByEq, null)
 import Data.Maybe (Maybe)
 
 filterEntryByStreet :: String -> Entry -> Boolean
@@ -26,3 +27,11 @@ findEntryByStreet' street = head <<< filter (eq street <<< _.address.street)
 
 isInBook :: String -> String -> AddressBook -> Boolean
 isInBook first last book = not null (filter (filterEntryByName first last) book)
+
+namesEq :: Entry -> Entry -> Boolean
+namesEq a b = 
+  _.firstName a == _.firstName b
+  && _.lastName a == _.lastName b  
+
+removeDuplicates :: AddressBook -> AddressBook
+removeDuplicates = nubByEq namesEq
