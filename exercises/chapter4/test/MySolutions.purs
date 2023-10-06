@@ -15,17 +15,21 @@ countEven :: Array Int -> Int
 countEven xs = 
   if null xs then 0
   else 
-    if isEven blah then 1 + countEven grug
-    else 0 + countEven grug
+    if isEven safeArrayFirstValue then 1 + countEven safeArrayTail
+    else 0 + countEven safeArrayTail
       where
-        blah = fromMaybe 1 $ head xs
-        grug = fromMaybe [] $ tail xs
+        safeArrayFirstValue = fromMaybe 1 $ head xs
+        safeArrayTail = fromMaybe [] $ tail xs
 
 countEven' :: Array Int -> Int
 countEven' xs = 
   if null xs then 0
-  else oneIfEven blah + countEven grug
+  else oneIfEven safeArrayFirstValue + countEven safeArrayTail
     where
       oneIfEven n = if isEven n then 1 else 0
-      blah = fromMaybe 1 $ head xs
-      grug = fromMaybe [] $ tail xs
+      safeArrayFirstValue = fromMaybe 1 $ head xs
+      safeArrayTail = fromMaybe [] $ tail xs
+
+squared :: Array Number -> Array Number
+squared = map square
+  where square x = x * x
