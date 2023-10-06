@@ -55,3 +55,9 @@ isPrime x =
   else if x == 1 then false
   else if x == 2 then true
   else (length $ factors x) == 1
+
+cartesianProduct :: forall a. Array a -> Array a -> Array (Array a)
+cartesianProduct as bs = do
+  a <- as
+  b <- bs
+  pure [a, b]
