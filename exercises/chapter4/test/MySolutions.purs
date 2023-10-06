@@ -3,7 +3,7 @@ module Test.MySolutions where
 import Prelude
 
 import Control.Alternative (guard)
-import Data.Array (concat, filter, head, length, null, tail, (..))
+import Data.Array (concat, filter, head, length, null, tail, (..), (:))
 import Data.Maybe (fromMaybe)
 import Test.Examples (factors)
 
@@ -70,3 +70,14 @@ triples n = do
   c <- b .. n
   guard $ ((a * a) + (b * b) == (c * c))
   pure [a,b,c]
+
+primeFactors :: Int -> Array Int
+primeFactors n = factorize 2 n
+  where
+    factorize :: Int -> Int -> Array Int
+    factorize _ 1 = []
+    factorize fst snd = 
+      if snd `mod` fst == 0 then
+        fst : (factorize fst (snd / fst))
+      else
+        factorize (fst + 1) snd
