@@ -2,8 +2,9 @@ module Test.MySolutions where
 
 import Prelude
 
-import Data.Array (filter, head, null, tail)
+import Data.Array (concat, filter, head, length, null, tail)
 import Data.Maybe (fromMaybe)
+import Test.Examples (factors)
 
 -- Note to reader: Add your solutions to this file
 isEven :: Int -> Boolean
@@ -47,3 +48,10 @@ keepNonNegativeRewrite xs = isPositive <$?> xs
   where
     isPositive :: Number -> Boolean
     isPositive x = x >= 0.0
+
+isPrime :: Int -> Boolean
+isPrime x = 
+  if x == 0 then false
+  else if x == 1 then false
+  else if x == 2 then true
+  else (length $ factors x) == 1
