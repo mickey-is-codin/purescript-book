@@ -2,7 +2,8 @@ module Test.MySolutions where
 
 import Prelude
 
-import Data.Array (concat, filter, head, length, null, tail)
+import Control.Alternative (guard)
+import Data.Array (concat, filter, head, length, null, tail, (..))
 import Data.Maybe (fromMaybe)
 import Test.Examples (factors)
 
@@ -61,3 +62,11 @@ cartesianProduct as bs = do
   a <- as
   b <- bs
   pure [a, b]
+
+triples :: Int -> Array (Array Int)
+triples n = do
+  a <- 1 .. n
+  b <- a .. n
+  c <- b .. n
+  guard $ ((a * a) + (b * b) == (c * c))
+  pure [a,b,c]
