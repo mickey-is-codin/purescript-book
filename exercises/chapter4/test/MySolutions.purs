@@ -2,7 +2,7 @@ module Test.MySolutions where
 
 import Prelude
 
-import Data.Array (head, tail, null)
+import Data.Array (filter, head, null, tail)
 import Data.Maybe (fromMaybe)
 
 -- Note to reader: Add your solutions to this file
@@ -33,3 +33,9 @@ countEven' xs =
 squared :: Array Number -> Array Number
 squared = map square
   where square x = x * x
+
+keepNonNegative :: Array Number -> Array Number
+keepNonNegative = filter isPositive
+  where
+    isPositive :: Number -> Boolean
+    isPositive x = x >= 0.0
