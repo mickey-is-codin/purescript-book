@@ -39,3 +39,11 @@ keepNonNegative = filter isPositive
   where
     isPositive :: Number -> Boolean
     isPositive x = x >= 0.0
+
+infix 8 filter as <$?>
+
+keepNonNegativeRewrite :: Array Number -> Array Number
+keepNonNegativeRewrite xs = isPositive <$?> xs
+  where
+    isPositive :: Number -> Boolean
+    isPositive x = x >= 0.0
