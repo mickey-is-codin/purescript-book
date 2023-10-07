@@ -85,3 +85,13 @@ primeFactors n = factorize 2 n
 
 allTrue :: Array Boolean -> Boolean
 allTrue = foldl (\acc curr -> acc && curr) true
+
+fibTailRec :: Int -> Int
+fibTailRec 0 = 0
+fibTailRec 1 = 1
+fibTailRec n = fib' n 2 0 1
+  where 
+    fib' :: Int -> Int -> Int -> Int -> Int
+    fib' limit count n1 n2 = 
+      if limit == count then n1 + n2
+      else fib' limit (count + 1) n2 (n1 + n2)
