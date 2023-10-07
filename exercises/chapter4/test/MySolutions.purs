@@ -4,6 +4,7 @@ import Prelude
 
 import Control.Alternative (guard)
 import Data.Array (concat, filter, head, length, null, tail, (..), (:))
+import Data.Foldable (foldl, foldr)
 import Data.Maybe (fromMaybe)
 import Test.Examples (factors)
 
@@ -81,3 +82,6 @@ primeFactors n = factorize 2 n
         fst : (factorize fst (snd / fst))
       else
         factorize (fst + 1) snd
+
+allTrue :: Array Boolean -> Boolean
+allTrue = foldl (\acc curr -> acc && curr) true
