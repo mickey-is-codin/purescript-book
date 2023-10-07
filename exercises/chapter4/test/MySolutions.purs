@@ -95,3 +95,6 @@ fibTailRec n = fib' n 2 0 1
     fib' limit count n1 n2 = 
       if limit == count then n1 + n2
       else fib' limit (count + 1) n2 (n1 + n2)
+
+reverse :: forall a. Array a -> Array a
+reverse = foldl (\acc curr -> [curr] <> acc) []
