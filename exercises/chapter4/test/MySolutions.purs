@@ -103,3 +103,10 @@ reverse = foldl (\acc curr -> [curr] <> acc) []
 onlyFiles :: Path -> Array Path
 onlyFiles path = filter isFile $ allFiles path
   where isFile = not isDirectory
+
+whereIs :: Path -> String -> Maybe Path
+whereIs path fileName = head $ do
+  path' <- allFiles path
+  child <- ls path'
+  guard $ filename child == filename path' <> fileName
+  pure path'
