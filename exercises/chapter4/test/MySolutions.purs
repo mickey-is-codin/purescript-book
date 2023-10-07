@@ -5,8 +5,9 @@ import Prelude
 import Control.Alternative (guard)
 import Data.Array (concat, filter, head, length, null, tail, (..), (:))
 import Data.Foldable (foldl, foldr)
-import Data.Maybe (fromMaybe)
-import Test.Examples (factors)
+import Data.Maybe (Maybe, fromMaybe)
+import Data.Path (Path, filename, isDirectory, ls)
+import Test.Examples (allFiles, factors)
 
 -- Note to reader: Add your solutions to this file
 isEven :: Int -> Boolean
@@ -98,3 +99,7 @@ fibTailRec n = fib' n 2 0 1
 
 reverse :: forall a. Array a -> Array a
 reverse = foldl (\acc curr -> [curr] <> acc) []
+
+onlyFiles :: Path -> Array Path
+onlyFiles path = filter isFile $ allFiles path
+  where isFile = not isDirectory
