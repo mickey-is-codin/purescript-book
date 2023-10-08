@@ -23,3 +23,7 @@ pascal n k = pascal (n - 1) k + pascal (n - 1) (k - 1)
 sameCity :: Person -> Person -> Boolean
 -- sameCity person1 person2 = person1.address.city == person2.address.city
 sameCity { address: { city: city1 } } { address: { city: city2 } } = city1 == city2
+
+fromSingleton :: forall a. a -> Array a -> a
+fromSingleton _ [x] = x
+fromSingleton default _ = default
